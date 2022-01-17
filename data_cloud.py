@@ -4,6 +4,7 @@
 from collections import Counter
 from wordcloud import WordCloud
 from textblob import TextBlob
+from tqdm import tqdm
 import pandas as pd
 import itertools
 import re
@@ -41,7 +42,7 @@ def read_data(input_name, columns, only_adjectives, strict, correct):
     df = pd.read_csv(LOCATION % input_name + ".csv", keep_default_na=False,
                      usecols=columns, low_memory=True)
     return [clean_data(val, only_adjectives, strict, correct)
-            for val in df.astype(str).values.tolist()]
+            for val in tqdm(df.astype(str).values.tolist())]
 
 
 def gen_wordcloud(df_string, words):
@@ -66,4 +67,4 @@ def gen_cloud(input_name: str, output_name: str, columns: list,
     frequency_df.to_csv('output_folder/' + output_name + '-frequency.csv')
 
 
-gen_cloud("Reviews-Data", "cloud-image", ["Review", "Title"])
+gen_cloud("Reviews-Data", "cloud-image", ["Review", "Title", "Pros", "Cons"])
