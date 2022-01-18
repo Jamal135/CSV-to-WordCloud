@@ -10,7 +10,7 @@ import itertools
 import re
 import os
 
-LOCATION = os.path.dirname(os.path.abspath(__file__)) + "\\data_folder\\%s"
+LOCATION = os.path.dirname(os.path.abspath(__file__)) + "\\%s"
 
 
 def get_adjectives(text: str, strict: bool):
@@ -59,12 +59,12 @@ def gen_cloud(input_name: str, output_name: str, columns: list,
     data_list = read_data(input_name, columns, adjectives, strict, correct)
     df_string = " ".join(list(itertools.chain.from_iterable(data_list)))
     wordcloud = gen_wordcloud(df_string, words)
-    wordcloud.to_file('output_folder/' + output_name + '.png')
+    wordcloud.to_file(output_name + '.png')
     clean_df = pd.DataFrame(data_list, columns=columns)
-    clean_df.to_csv('output_folder/' + output_name + '-data.csv')
+    clean_df.to_csv(output_name + '-data.csv')
     frequency_list = Counter(df_string.split()).most_common()
     frequency_df = pd.DataFrame(frequency_list, columns=['Word', 'Count'])
-    frequency_df.to_csv('output_folder/' + output_name + '-frequency.csv')
+    frequency_df.to_csv(output_name + '-frequency.csv')
 
 
 gen_cloud("Reviews-Data", "cloud-image", ["Review", "Title", "Pros", "Cons"])
