@@ -83,5 +83,5 @@ def gen_cloud(input_name: str, output_name: str, columns: list, tags: list, stop
 
 
 # Tags: https://en.wikipedia.org/wiki/Brown_Corpus#Part-of-speech_tags_used
-gen_cloud("Large-Reviews-Data", "please-still-work",
-          ["Review", "Title", "Pros", "Cons"], ["JJ", "NN", "RB", "VB"], correct = False)
+gen_cloud("QLD-Reviews-Data", "Analysis-Pros-NN",
+          ["Pros"], ["NN"], correct = False)
